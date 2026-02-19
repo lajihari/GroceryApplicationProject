@@ -38,9 +38,9 @@ public WebDriver driver;
 	{
 		refreshNews.click();
 	}
-	public void addNewNewsContent()
+	public void addNewNewsContent(String newNewsContent)
 	{
-		addNewsContent.sendKeys("New News Added");
+		addNewsContent.sendKeys(newNewsContent);
 	}
 	public void saveNewNews()
 	{

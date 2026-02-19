@@ -12,14 +12,14 @@ import pages.AdminUserPage;
 import pages.HomePage;
 import pages.LoginPage;
 import utilities.ExcelUtility;
-import utilities.ExcelUtilityAddNewUser;
+import utilities.FakerUtility;
 
 public class AdminUserTest extends Base {
 	@Test
-	public void verifyNewUsers() throws IOException
+	public void addNewUsersByUsingUsernamAndPassword() throws IOException
 	{
-		String UserName = ExcelUtility.getStringData(0, 0, "Login");
-		String Password = ExcelUtility.getStringData(0, 1, "Login");
+		String UserName = ExcelUtility.getStringData(0, 0, "LoginPage");
+		String Password = ExcelUtility.getStringData(0, 1, "LoginPage");
 		
 		LoginPage login = new LoginPage(driver);
 		login.enterUsername(UserName);
@@ -29,21 +29,21 @@ public class AdminUserTest extends Base {
 		AdminUserPage admin=new AdminUserPage(driver);
 		HomePage home=new HomePage(driver);
 		home.adminUsersClick();
-		admin.newButtonClick();
+		admin.addnewUserButtonClick();
+		FakerUtility faker=new FakerUtility();
+		String newUserName=faker.createRandomUserName();
+		String newUserPassword=faker.createRandomPassword();
 		
-		String newUserName=ExcelUtilityAddNewUser.getStringData(0, 0,"User");
-		String newUserPassword=ExcelUtilityAddNewUser.getStringData(0, 1,"User");
-		
-		admin.addNewUserUserName(newUserName);
-		admin.addNewUserPassword(newUserPassword);
-		admin.addNewUserSubmit();
+		admin.addNewUserUserNameInUserNameField(newUserName);
+		admin.addNewUserPasswordInPasswordField(newUserPassword);
+		admin.saveNewUserByUsingNewUserNameAndPassword();
 				
 	}
 	@Test
-	public void verifySearchUsers() throws IOException
+	public void searchForExistingAdminUsersByUsernameAndUserType() throws IOException
 	{
-		String UserName = ExcelUtility.getStringData(0, 0, "Login");
-		String Password = ExcelUtility.getStringData(0, 1, "Login");
+		String UserName = ExcelUtility.getStringData(0, 0, "LoginPage");
+		String Password = ExcelUtility.getStringData(0, 1, "LoginPage");
 		
 		LoginPage login = new LoginPage(driver);
 		login.enterUsername(UserName);
@@ -53,19 +53,19 @@ public class AdminUserTest extends Base {
 		AdminUserPage admin=new AdminUserPage(driver);
 		HomePage home=new HomePage(driver);
 		home.adminUsersClick();
-		admin.searchButtonClick();
+		admin.searchUserButtonClick();
 		
-		String newUserName=ExcelUtilityAddNewUser.getStringData(0, 0,"Search");
-		admin.searchByUsername(newUserName);
-		admin.searchByUserType();
-		admin.searchByUsernameAndUserType();
+		String existingUserName=ExcelUtility.getStringData(0, 0,"AdminSearch");
+		admin.enterUsernameInSearchUserNameField(existingUserName);
+		admin.selectUserTypeFromUserTypeDropDown();
+		admin.searchUsingExistingUsernameAndUserType();
 		
 	}
 	@Test
-	public void verifyadminUsersIsVerifyingUserList() throws IOException
+	public void refreshTheUserList() throws IOException
 	{
-		String UserName = ExcelUtility.getStringData(0, 0, "Login");
-		String Password = ExcelUtility.getStringData(0, 1, "Login");
+		String UserName = ExcelUtility.getStringData(0, 0, "LoginPage");
+		String Password = ExcelUtility.getStringData(0, 1, "LoginPage");
 		
 		LoginPage login = new LoginPage(driver);
 		login.enterUsername(UserName);
@@ -76,7 +76,6 @@ public class AdminUserTest extends Base {
 		HomePage home=new HomePage(driver);
 		home.adminUsersClick();
 		admin.refreshButtonClick();
-	
 		
 	}
 }

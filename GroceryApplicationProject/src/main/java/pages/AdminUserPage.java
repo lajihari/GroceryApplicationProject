@@ -20,26 +20,26 @@ public WebDriver driver;
 		PageFactory.initElements(driver, this);
 	}
 	
-	@FindBy(xpath="//a[@onclick=\"click_button(1)\"]")WebElement newButton;
+	@FindBy(xpath="//a[@onclick=\"click_button(1)\"]")WebElement addnewButton;
 	@FindBy(xpath="//a[@onclick=\"click_button(2)\"]")WebElement searchButton;
 	@FindBy(xpath="//a[@class=\"btn btn-rounded btn-warning\"]")WebElement refreshButton;
 	
 	//new users add
-	@FindBy(id="username")WebElement userNameValue;
-	@FindBy(id="password")WebElement passwordValue;
+	@FindBy(id="username")WebElement newuserName;
+	@FindBy(id="password")WebElement newpassword;
 	@FindBy(id="user_type")WebElement userTypeValue;
 	@FindBy(xpath = "//button[@type='submit' and @name='Create']")WebElement saveUser;
 	
 	//Search
-	@FindBy(id="un")WebElement searchValue;
+	@FindBy(id="un")WebElement valueTosearch;
 	@FindBy(id="ut")WebElement searchType;
-	@FindBy(xpath="//button[@name='Search']")WebElement searchButton1;
+	@FindBy(xpath="//button[@name='Search']")WebElement clickOnsearchButton;
 	
-	public void newButtonClick()
+	public void addnewUserButtonClick()
 	{
-		newButton.click();
+		addnewButton.click();
 	}
-	public void searchButtonClick()
+	public void searchUserButtonClick()
 	{
 		searchButton.click();
 	}
@@ -47,32 +47,32 @@ public WebDriver driver;
 	{
 		refreshButton.click();
 	}
-	public void addNewUserUserName(String newUserName)
+	public void addNewUserUserNameInUserNameField(String newUserName)
 	{
-		userNameValue.sendKeys(newUserName);
+		newuserName.sendKeys(newUserName);
 	}
-	public void addNewUserPassword(String newPassword)
+	public void addNewUserPasswordInPasswordField(String newPassword)
 	{
-		passwordValue.sendKeys(newPassword);
+		newpassword.sendKeys(newPassword);
 	}
-	public void addNewUserSubmit()
+	public void saveNewUserByUsingNewUserNameAndPassword()
 	{
 		Select select=new Select(userTypeValue);
 		select.selectByValue("admin");
 		saveUser.click();
 	}
-	public void searchByUsername(String searchUserName)
+	public void enterUsernameInSearchUserNameField(String searchUserName)
 	{
-		searchValue.sendKeys(searchUserName);
+		valueTosearch.sendKeys(searchUserName);
 	}
-	public void searchByUserType()
+	public void selectUserTypeFromUserTypeDropDown()
 	{
 		Select select=new Select(searchType);
 		select.selectByValue("admin");
 		searchType.click();
 	}
-	public void searchByUsernameAndUserType()
+	public void searchUsingExistingUsernameAndUserType()
 	{
-		searchButton1.click();
+		clickOnsearchButton.click();
 	}
 }

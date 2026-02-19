@@ -16,8 +16,8 @@ public class HomeTest extends Base {
 	public void verifyUserIsAbleToLogout() throws Exception
 	{
 		
-		String UserName = ExcelUtility.getStringData(0, 0, "Login");
-		String Password = ExcelUtility.getStringData(0, 1, "Login");
+		String UserName = ExcelUtility.getStringData(0, 0, "LoginPage");
+		String Password = ExcelUtility.getStringData(0, 1, "LoginPage");
 		
 		LoginPage login = new LoginPage(driver);
 		login.enterUsername(UserName);
@@ -27,24 +27,7 @@ public class HomeTest extends Base {
 		
 		HomePage home = new HomePage(driver);
 		home.adminButton();
-		//home.adminUsersClick();
 		home.logoutButton();
-	}
-	@Test
-	public void clickOnAdminUsers() throws IOException
-	{
-		String UserName = ExcelUtility.getStringData(0, 0, "Login");
-		String Password = ExcelUtility.getStringData(0, 1, "Login");
-		
-		LoginPage login = new LoginPage(driver);
-		login.enterUsername(UserName);
-		login.enterPassword(Password);
-		login.clickOnSubmitButton();
-		
-		
-		HomePage home = new HomePage(driver);
-		home.adminUsersClick();
-		
 	}
 	
 }

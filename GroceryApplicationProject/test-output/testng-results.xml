@@ -1,25 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="3" passed="3" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-02-12T23:11:00 IST" name="Default suite" finished-at="2026-02-12T23:11:14 IST" duration-ms="13752">
+  <suite started-at="2026-02-19T15:11:35 IST" name="Suite" finished-at="2026-02-19T15:12:01 IST" duration-ms="26539">
     <groups>
     </groups>
-    <test started-at="2026-02-12T23:11:00 IST" name="Default test" finished-at="2026-02-12T23:11:14 IST" duration-ms="13752">
+    <test started-at="2026-02-19T15:11:35 IST" name="Test" finished-at="2026-02-19T15:12:01 IST" duration-ms="26539">
       <class name="testScripts.ManageNewsTest">
-        <test-method is-config="true" signature="browserLaunch()[pri:0, instance:testScripts.ManageNewsTest@7cc0cdad]" started-at="2026-02-12T23:11:00 IST" name="browserLaunch" finished-at="2026-02-12T23:11:07 IST" duration-ms="6894" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- browserLaunch -->
-        <test-method signature="refreshNews()[pri:0, instance:testScripts.ManageNewsTest@7cc0cdad]" started-at="2026-02-12T23:11:07 IST" name="refreshNews" finished-at="2026-02-12T23:11:14 IST" duration-ms="6750" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- refreshNews -->
-        <test-method is-config="true" signature="driverQuit(org.testng.ITestResult)[pri:0, instance:testScripts.ManageNewsTest@7cc0cdad]" started-at="2026-02-12T23:11:14 IST" name="driverQuit" finished-at="2026-02-12T23:11:14 IST" duration-ms="3" status="PASS">
+        <test-method is-config="true" signature="browserLaunch(java.lang.String)[pri:0, instance:testScripts.ManageNewsTest@3aa078fd]" started-at="2026-02-19T15:11:35 IST" name="browserLaunch" finished-at="2026-02-19T15:11:40 IST" duration-ms="4586" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=refreshNews status=SUCCESS method=ManageNewsTest.refreshNews()[pri:0, instance:testScripts.ManageNewsTest@7cc0cdad] output={null}]]]>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- browserLaunch -->
+        <test-method signature="createNewNewsItem()[pri:0, instance:testScripts.ManageNewsTest@3aa078fd]" started-at="2026-02-19T15:11:40 IST" name="createNewNewsItem" finished-at="2026-02-19T15:11:45 IST" duration-ms="5323" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createNewNewsItem -->
+        <test-method is-config="true" signature="driverQuit(org.testng.ITestResult)[pri:0, instance:testScripts.ManageNewsTest@3aa078fd]" started-at="2026-02-19T15:11:45 IST" name="driverQuit" finished-at="2026-02-19T15:11:45 IST" duration-ms="495" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=createNewNewsItem status=SUCCESS method=ManageNewsTest.createNewNewsItem()[pri:0, instance:testScripts.ManageNewsTest@3aa078fd] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- driverQuit -->
+        <test-method is-config="true" signature="browserLaunch(java.lang.String)[pri:0, instance:testScripts.ManageNewsTest@3aa078fd]" started-at="2026-02-19T15:11:45 IST" name="browserLaunch" finished-at="2026-02-19T15:11:51 IST" duration-ms="5123" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- browserLaunch -->
+        <test-method signature="refreshTheNewsListingPage()[pri:0, instance:testScripts.ManageNewsTest@3aa078fd]" started-at="2026-02-19T15:11:51 IST" name="refreshTheNewsListingPage" finished-at="2026-02-19T15:11:53 IST" duration-ms="2356" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- refreshTheNewsListingPage -->
+        <test-method is-config="true" signature="driverQuit(org.testng.ITestResult)[pri:0, instance:testScripts.ManageNewsTest@3aa078fd]" started-at="2026-02-19T15:11:53 IST" name="driverQuit" finished-at="2026-02-19T15:11:53 IST" duration-ms="368" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=refreshTheNewsListingPage status=SUCCESS method=ManageNewsTest.refreshTheNewsListingPage()[pri:0, instance:testScripts.ManageNewsTest@3aa078fd] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- driverQuit -->
+        <test-method is-config="true" signature="browserLaunch(java.lang.String)[pri:0, instance:testScripts.ManageNewsTest@3aa078fd]" started-at="2026-02-19T15:11:53 IST" name="browserLaunch" finished-at="2026-02-19T15:11:58 IST" duration-ms="4866" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- browserLaunch -->
+        <test-method signature="searchForExistingNewsItems()[pri:0, instance:testScripts.ManageNewsTest@3aa078fd]" started-at="2026-02-19T15:11:58 IST" name="searchForExistingNewsItems" finished-at="2026-02-19T15:12:01 IST" duration-ms="2808" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchForExistingNewsItems -->
+        <test-method is-config="true" signature="driverQuit(org.testng.ITestResult)[pri:0, instance:testScripts.ManageNewsTest@3aa078fd]" started-at="2026-02-19T15:12:01 IST" name="driverQuit" finished-at="2026-02-19T15:12:01 IST" duration-ms="502" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=searchForExistingNewsItems status=SUCCESS method=ManageNewsTest.searchForExistingNewsItems()[pri:0, instance:testScripts.ManageNewsTest@3aa078fd] output={null}]]]>
               </value>
             </param>
           </params>
@@ -27,6 +86,6 @@
           </reporter-output>
         </test-method> <!-- driverQuit -->
       </class> <!-- testScripts.ManageNewsTest -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
 </testng-results>

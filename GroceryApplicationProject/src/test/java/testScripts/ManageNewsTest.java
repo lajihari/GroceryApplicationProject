@@ -9,14 +9,15 @@ import pages.HomePage;
 import pages.LoginPage;
 import pages.ManageNewsPage;
 import utilities.ExcelUtility;
+import utilities.FakerUtility;
 
 public class ManageNewsTest extends Base {
 	@Test
 	
-	public void manageNewsAdd() throws IOException
+	public void createNewNewsItem() throws IOException
 	{
-		String UserName = ExcelUtility.getStringData(0, 0, "Login");
-		String Password = ExcelUtility.getStringData(0, 1, "Login");
+		String UserName = ExcelUtility.getStringData(0, 0, "LoginPage");
+		String Password = ExcelUtility.getStringData(0, 1, "LoginPage");
 		
 		LoginPage login = new LoginPage(driver);
 		login.enterUsername(UserName);
@@ -28,15 +29,17 @@ public class ManageNewsTest extends Base {
 		
 		ManageNewsPage news=new ManageNewsPage(driver);
 		news.clickOnAddNewNews();
-		news.addNewNewsContent();
+		FakerUtility faker=new FakerUtility();
+	    String newsContent=faker.createRandomContent();
+		news.addNewNewsContent(newsContent);
 		news.saveNewNews();
 	}
 	@Test
 	
-	public void searchNews() throws IOException
+	public void searchForExistingNewsItems() throws IOException
 	{
-		String UserName = ExcelUtility.getStringData(0, 0, "Login");
-		String Password = ExcelUtility.getStringData(0, 1, "Login");
+		String UserName = ExcelUtility.getStringData(0, 0, "LoginPage");
+		String Password = ExcelUtility.getStringData(0, 1, "LoginPage");
 		
 		LoginPage login = new LoginPage(driver);
 		login.enterUsername(UserName);
@@ -52,10 +55,10 @@ public class ManageNewsTest extends Base {
 		news.clickOnSeachButton();
 	}
 	@Test
-	public void refreshNews() throws IOException
+	public void refreshTheNewsListingPage() throws IOException
 	{
-		String UserName = ExcelUtility.getStringData(0, 0, "Login");
-		String Password = ExcelUtility.getStringData(0, 1, "Login");
+		String UserName = ExcelUtility.getStringData(0, 0, "LoginPage");
+		String Password = ExcelUtility.getStringData(0, 1, "LoginPage");
 		
 		LoginPage login = new LoginPage(driver);
 		login.enterUsername(UserName);

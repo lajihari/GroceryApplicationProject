@@ -29,22 +29,26 @@ public class HomePage {
 	@FindBy(xpath="//p[text()='Manage News']/ancestor::div[@class='small-box bg-info']/a[text()='More info ']/i[@class=\"fas fa-arrow-circle-right\"]")
 	WebElement manageNews;
 	
-	public void adminButton()//for -logout
+	public HomePage openUserProfileMenu()//for -logout
 	{
 		adminButton.click();
+		return this;
 	}
 	
-	public void logoutButton()
+	public LoginPage clickOnLogoutOption()
 	{
 		logoutButton.click();
+		return new LoginPage(driver);
 	}
-	public void adminUsersClick()
+	public AdminUserPage navigateToAdminUsersPage()
 	{
 		adminUsers.click();
+		return new AdminUserPage(driver);
 	}
-	public void manageNewsButton()
+	public ManageNewsPage navigateToManageNewsPage()
 	{
 		manageNews.click();
+		return new ManageNewsPage(driver);
 	}
 	
 }

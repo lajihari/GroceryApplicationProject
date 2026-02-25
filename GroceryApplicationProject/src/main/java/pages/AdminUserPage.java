@@ -11,8 +11,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import constant.Constants;
+import utilities.PageUtility;
+import utilities.WaitUtility;
+
 public class AdminUserPage {
 public WebDriver driver;
+PageUtility page= new PageUtility();
 	
 	public AdminUserPage(WebDriver driver)
 	{
@@ -29,50 +34,62 @@ public WebDriver driver;
 	@FindBy(id="password")WebElement newpassword;
 	@FindBy(id="user_type")WebElement userTypeValue;
 	@FindBy(xpath = "//button[@type='submit' and @name='Create']")WebElement saveUser;
+	@FindBy(xpath="//div[contains(@class,'alert-success')]")WebElement alertMessage;
 	
 	//Search
 	@FindBy(id="un")WebElement valueTosearch;
 	@FindBy(id="ut")WebElement searchType;
 	@FindBy(xpath="//button[@name='Search']")WebElement clickOnsearchButton;
 	
-	public void addnewUserButtonClick()
+	public AdminUserPage clickOnNewUserInAdminUserpage()
 	{
 		addnewButton.click();
+		return this;
 	}
-	public void searchUserButtonClick()
+	public AdminUserPage searchForUser()
 	{
 		searchButton.click();
+		return this;
 	}
-	public void refreshButtonClick()
+	public AdminUserPage refreshUserList()
 	{
 		refreshButton.click();
+		return this;
 	}
-	public void addNewUserUserNameInUserNameField(String newUserName)
+	public AdminUserPage addNewUserNameInUserNameField(String newUserName)
 	{
 		newuserName.sendKeys(newUserName);
+		return this;
 	}
-	public void addNewUserPasswordInPasswordField(String newPassword)
+	public AdminUserPage addNewPasswordInPasswordField(String newPassword)
 	{
 		newpassword.sendKeys(newPassword);
+		return this;
 	}
-	public void saveNewUserByUsingNewUserNameAndPassword()
+	public AdminUserPage saveNewUserByUsingNewUserNameAndPassword()
 	{
-		Select select=new Select(userTypeValue);
-		select.selectByValue("admin");
+		page.selectDropdownWithValue(userTypeValue, Constants.DROPDOWNVALUE1);
 		saveUser.click();
+		return this;
 	}
-	public void enterUsernameInSearchUserNameField(String searchUserName)
+	public boolean isAlertMessageDisplayed()
+	{
+	    return alertMessage.isDisplayed();
+	}
+	public AdminUserPage enterUsernameInSearchUserNameField(String searchUserName)
 	{
 		valueTosearch.sendKeys(searchUserName);
+		return this;
 	}
-	public void selectUserTypeFromUserTypeDropDown()
+	public AdminUserPage selectUserTypeFromUserTypeDropDown()
 	{
-		Select select=new Select(searchType);
-		select.selectByValue("admin");
-		searchType.click();
+		page.selectDropdownWithValue(searchType,Constants.DROPDOWNVALUE1 );
+		return this;
 	}
-	public void searchUsingExistingUsernameAndUserType()
+	public AdminUserPage searchUsingExistingUsernameAndUserType()
 	{
 		clickOnsearchButton.click();
+		return this;
 	}
+	
 }

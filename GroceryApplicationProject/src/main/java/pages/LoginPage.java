@@ -12,23 +12,28 @@ public class LoginPage {
 		this.driver=driver;
 		PageFactory.initElements(driver,this);
 	}
+	
+	@FindBy(xpath="//b[text()='7rmart supermarket']")WebElement loginPageTitleCard;
 	@FindBy(name="username")WebElement usernameField;
 	@FindBy(name="password")WebElement passwordField;
 	@FindBy(xpath="//button[text()='Sign In']")WebElement submit;
 	@FindBy(xpath="//p[text()='Dashboard']")WebElement dashboardTile;
 	@FindBy(xpath="//b[text()='7rmart supermarket']")WebElement loginText;
 	
-	public void enterUsername(String UserName)
+	public LoginPage enterUsernameOnUserNameField(String UserName)
 	{
 		usernameField.sendKeys(UserName);
+		return this;
 	}
-	public void enterPassword(String Password)
+	public LoginPage enterPasswordOnPasswordField(String Password)
 	{
 		passwordField.sendKeys(Password);
+		return this;
 	}
-	public void clickOnSubmitButton()
+	public HomePage clickOnSubmitButton()
 	{
 		submit.click();
+		return new HomePage(driver);
 	}
 	public boolean isDashboardDisplayed() {
 	    try {
@@ -41,4 +46,9 @@ public class LoginPage {
 	{
 		return loginText.getText();
 	}
+	public boolean isLoginPageDisplayed()
+	{
+		return loginPageTitleCard.isDisplayed();
+	}
+	
 }

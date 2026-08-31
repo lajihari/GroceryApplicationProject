@@ -11,8 +11,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import constant.Constants;
+import utilities.PageUtility;
+import utilities.WaitUtility;
+
 public class AdminUserPage {
 public WebDriver driver;
+PageUtility page= new PageUtility();
 	
 	public AdminUserPage(WebDriver driver)
 	{
@@ -20,59 +25,71 @@ public WebDriver driver;
 		PageFactory.initElements(driver, this);
 	}
 	
-	@FindBy(xpath="//a[@onclick=\"click_button(1)\"]")WebElement newButton;
+	@FindBy(xpath="//a[@onclick=\"click_button(1)\"]")WebElement addnewButton;
 	@FindBy(xpath="//a[@onclick=\"click_button(2)\"]")WebElement searchButton;
 	@FindBy(xpath="//a[@class=\"btn btn-rounded btn-warning\"]")WebElement refreshButton;
 	
 	//new users add
-	@FindBy(id="username")WebElement userNameValue;
-	@FindBy(id="password")WebElement passwordValue;
+	@FindBy(id="username")WebElement newuserName;
+	@FindBy(id="password")WebElement newpassword;
 	@FindBy(id="user_type")WebElement userTypeValue;
 	@FindBy(xpath = "//button[@type='submit' and @name='Create']")WebElement saveUser;
+	@FindBy(xpath="//div[contains(@class,'alert-success')]")WebElement alertMessage;
 	
 	//Search
-	@FindBy(id="un")WebElement searchValue;
+	@FindBy(id="un")WebElement valueTosearch;
 	@FindBy(id="ut")WebElement searchType;
-	@FindBy(xpath="//button[@name='Search']")WebElement searchButton1;
+	@FindBy(xpath="//button[@name='Search']")WebElement clickOnsearchButton;
 	
-	public void newButtonClick()
+	public AdminUserPage clickOnNewUserInAdminUserpage()
 	{
-		newButton.click();
+		addnewButton.click();
+		return this;
 	}
-	public void searchButtonClick()
+	public AdminUserPage searchForUser()
 	{
 		searchButton.click();
+		return this;
 	}
-	public void refreshButtonClick()
+	public AdminUserPage refreshUserList()
 	{
 		refreshButton.click();
+		return this;
 	}
-	public void addNewUserUserName(String newUserName)
+	public AdminUserPage addNewUserNameInUserNameField(String newUserName)
 	{
-		userNameValue.sendKeys(newUserName);
+		newuserName.sendKeys(newUserName);
+		return this;
 	}
-	public void addNewUserPassword(String newPassword)
+	public AdminUserPage addNewPasswordInPasswordField(String newPassword)
 	{
-		passwordValue.sendKeys(newPassword);
+		newpassword.sendKeys(newPassword);
+		return this;
 	}
-	public void addNewUserSubmit()
+	public AdminUserPage saveNewUserByUsingNewUserNameAndPassword()
 	{
-		Select select=new Select(userTypeValue);
-		select.selectByValue("admin");
+		page.selectDropdownWithValue(userTypeValue, Constants.DROPDOWNVALUE1);
 		saveUser.click();
+		return this;
 	}
-	public void searchByUsername(String searchUserName)
+	public boolean isAlertMessageDisplayed()
 	{
-		searchValue.sendKeys(searchUserName);
+	    return alertMessage.isDisplayed();
 	}
-	public void searchByUserType()
+	public AdminUserPage enterUsernameInSearchUserNameField(String searchUserName)
 	{
-		Select select=new Select(searchType);
-		select.selectByValue("admin");
-		searchType.click();
+		valueTosearch.sendKeys(searchUserName);
+		return this;
 	}
-	public void searchByUsernameAndUserType()
+	public AdminUserPage selectUserTypeFromUserTypeDropDown()
 	{
-		searchButton1.click();
+		page.selectDropdownWithValue(searchType,Constants.DROPDOWNVALUE1 );
+		return this;
 	}
+	public AdminUserPage searchUsingExistingUsernameAndUserType()
+	{
+		clickOnsearchButton.click();
+		return this;
+	}
+	
 }

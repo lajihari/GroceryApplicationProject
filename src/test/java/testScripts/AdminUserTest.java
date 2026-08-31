@@ -3,80 +3,86 @@ package testScripts;
 import java.io.IOException;
 import java.time.Duration;
 
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import automationCore.Base;
+import constant.Constants;
 import pages.AdminUserPage;
 import pages.HomePage;
 import pages.LoginPage;
 import utilities.ExcelUtility;
-import utilities.ExcelUtilityAddNewUser;
+import utilities.FakerUtility;
+import utilities.WaitUtility;
 
 public class AdminUserTest extends Base {
-	@Test
-	public void verifyNewUsers() throws IOException
+	HomePage home;
+	AdminUserPage admin;
+	@Test(description="Verify that user can create a new admin user using new username and password")
+	public void verifyUserCanAddNewAdminUser() throws IOException
 	{
-		String UserName = ExcelUtility.getStringData(0, 0, "Login");
-		String Password = ExcelUtility.getStringData(0, 1, "Login");
+		String userName = ExcelUtility.getStringData(0, 0,"LoginPage");
+		String password = ExcelUtility.getStringData(0, 1,"LoginPage");
 		
 		LoginPage login = new LoginPage(driver);
-		login.enterUsername(UserName);
-		login.enterPassword(Password);
-		login.clickOnSubmitButton();
+		login.enterUsernameOnUserNameField(userName).enterPasswordOnPasswordField(password);
+		home=login.clickOnSubmitButton();
+		boolean dashBoardDisplay=login.isDashboardDisplayed();
+		Assert.assertTrue(dashBoardDisplay,Constants.VALIDCREDENTIALERROR);
 		
-		AdminUserPage admin=new AdminUserPage(driver);
-		HomePage home=new HomePage(driver);
-		home.adminUsersClick();
-		admin.newButtonClick();
+		//AdminUserPage admin=new AdminUserPage(driver);
+		//HomePage home=new HomePage(driver);
+		admin=home.navigateToAdminUsersPage();
+		admin.clickOnNewUserInAdminUserpage();
+		FakerUtility faker=new FakerUtility();
+		String newUserName=faker.createRandomUserName();
+		String newUserPassword=faker.createRandomPassword();
 		
-		String newUserName=ExcelUtilityAddNewUser.getStringData(0, 0,"User");
-		String newUserPassword=ExcelUtilityAddNewUser.getStringData(0, 1,"User");
+		admin.addNewUserNameInUserNameField(newUserName).addNewPasswordInPasswordField(newUserPassword).saveNewUserByUsingNewUserNameAndPassword();
 		
-		admin.addNewUserUserName(newUserName);
-		admin.addNewUserPassword(newUserPassword);
-		admin.addNewUserSubmit();
+		boolean alertMessage=admin.isAlertMessageDisplayed();
+		Assert.assertTrue(alertMessage,Constants.ADMINUSERADDEDERRORMESSAGE);
 				
 	}
-	@Test
-	public void verifySearchUsers() throws IOException
+	@Test(description="Verify that user can search admin user using username and user type")
+	public void verifyUserCanSearchAdminUserByUsernameAndUserType() throws IOException
 	{
-		String UserName = ExcelUtility.getStringData(0, 0, "Login");
-		String Password = ExcelUtility.getStringData(0, 1, "Login");
+		String userName = ExcelUtility.getStringData(0, 0, "LoginPage");
+		String password = ExcelUtility.getStringData(0, 1, "LoginPage");
 		
 		LoginPage login = new LoginPage(driver);
-		login.enterUsername(UserName);
-		login.enterPassword(Password);
-		login.clickOnSubmitButton();
+		login.enterUsernameOnUserNameField(userName).enterPasswordOnPasswordField(password);
+		home=login.clickOnSubmitButton();
+		boolean dashBoardDisplay=login.isDashboardDisplayed();
+		Assert.assertTrue(dashBoardDisplay,Constants.VALIDCREDENTIALERROR);
 		
-		AdminUserPage admin=new AdminUserPage(driver);
-		HomePage home=new HomePage(driver);
-		home.adminUsersClick();
-		admin.searchButtonClick();
+		//AdminUserPage admin=new AdminUserPage(driver);
+		//HomePage home=new HomePage(driver);
+		admin=home.navigateToAdminUsersPage();
+		admin.searchForUser();
 		
-		String newUserName=ExcelUtilityAddNewUser.getStringData(0, 0,"Search");
-		admin.searchByUsername(newUserName);
-		admin.searchByUserType();
-		admin.searchByUsernameAndUserType();
-		
+		String existingUserName=ExcelUtility.getStringData(0, 0,"AdminSearch");
+		admin.enterUsernameInSearchUserNameField(existingUserName).selectUserTypeFromUserTypeDropDown().searchUsingExistingUsernameAndUserType();
+				
 	}
-	@Test
-	public void verifyadminUsersIsVerifyingUserList() throws IOException
+	@Test(description="Verify that user can refresh the admin user list")
+	public void verifyUserCanRefreshAdminUserList() throws IOException
 	{
-		String UserName = ExcelUtility.getStringData(0, 0, "Login");
-		String Password = ExcelUtility.getStringData(0, 1, "Login");
+		String userName = ExcelUtility.getStringData(0, 0, "LoginPage");
+		String password = ExcelUtility.getStringData(0, 1, "LoginPage");
 		
 		LoginPage login = new LoginPage(driver);
-		login.enterUsername(UserName);
-		login.enterPassword(Password);
-		login.clickOnSubmitButton();
+		login.enterUsernameOnUserNameField(userName).enterPasswordOnPasswordField(password);
+		home=login.clickOnSubmitButton();
 		
-		AdminUserPage admin=new AdminUserPage(driver);
-		HomePage home=new HomePage(driver);
-		home.adminUsersClick();
-		admin.refreshButtonClick();
-	
+		//AdminUserPage admin=new AdminUserPage(driver);
+		//HomePage home=new HomePage(driver);
+		admin=home.navigateToAdminUsersPage();
+		admin.refreshUserList();
+		
 		
 	}
 }
